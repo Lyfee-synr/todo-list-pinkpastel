@@ -1,0 +1,15 @@
+body {
+  font-family: sans-serif;
+  margin: 2rem;
+  background: #f5f5f5;
+}
+form {
+  margin-bottom: 1rem;
+}
+li {
+  margin: 5px 0;
+}
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
