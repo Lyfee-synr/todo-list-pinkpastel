@@ -1,6 +1,4 @@
-
 const API_URL = 'https://todo-list-pinkpastel.onrender.com/api/tasks';
-
 
 const taskForm = document.getElementById('taskForm');
 const taskList = document.getElementById('taskList');
