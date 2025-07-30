@@ -143,55 +143,7 @@
     <ul id="taskList"></ul>
   </div>
   <div class="footer">Made with ❤️ by Ngoc Nhi | Powered by Node.js, MongoDB</div>
-  <script>
-    // === Fetch All Tasks ===
-    function loadTasks() {
-      fetch('/api/tasks')
-        .then(res => res.json())
-        .then(data => {
-          const list = document.getElementById('taskList');
-          list.innerHTML = '';
-          data.forEach(task => {
-            const li = document.createElement('li');
-            li.className = 'task' + (task.status === 'completed' ? ' completed' : '');
-            li.innerHTML = `
-              <input class="checkbox" type="checkbox" ${task.status === 'completed' ? 'checked' : ''}>
-              <span>${task.description}</span>
-              <button class="delete-btn" title="Delete">&times;</button>
-            `;
-            // Complete handler
-            li.querySelector('.checkbox').addEventListener('change', (e) => {
-              fetch('/api/tasks/' + task._id, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ status: e.target.checked ? 'completed' : 'pending' })
-              }).then(loadTasks);
-            });
-            // Delete handler
-            li.querySelector('.delete-btn').onclick = () => {
-              fetch('/api/tasks/' + task._id, { method: 'DELETE' })
-                .then(loadTasks);
-            };
-            list.appendChild(li);
-          });
-        });
-    }
-    // === Add Task ===
-    document.getElementById('addTaskForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const val = document.getElementById('taskInput').value.trim();
-      if (!val) return;
-      fetch('/api/tasks', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ description: val })
-      }).then(() => {
-        document.getElementById('taskInput').value = '';
-        loadTasks();
-      });
-    });
-    // Init
-    loadTasks();
-  </script>
+  <!-- Sử dụng file script.js ở ngoài cùng -->
+  <script src="script.js"></script>
 </body>
 </html>
